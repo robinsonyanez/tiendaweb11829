@@ -11,7 +11,18 @@ function RegistrarCategoria($nom_categoria)
 
     return $rpta;
 }
+function ListarCategoria() 
+{
+    require_once("Conexion.php");
 
+    $result = mysqli_query($conex, "SELECT * FROM categoria");
+    $categorias = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        $categorias[] = $row;
+    }
+    mysqli_close($conex);
+    return $categorias;
+}
 function BuscarCategoria($id_categoria) 
 {
     require_once("Conexion.php");
